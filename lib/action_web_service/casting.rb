@@ -104,7 +104,7 @@ module ActionWebService # :nodoc:
             elsif value.kind_of?(DateTime)
               value.to_time
             else
-              Time.parse(value.to_s)
+              DateTime.parse(value.to_s).to_time
             end
           when :date
             value = "%s/%s/%s" % value.values_at(*%w[2 3 1]) if value.kind_of?(Hash)

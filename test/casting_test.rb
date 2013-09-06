@@ -58,7 +58,7 @@ class TC_Casting < Test::Unit::TestCase
       cast_expects(:float, 'not a float')
     end
     assert_raises ArgumentError do
-      cast_expects(:time, '111111111111111111111111111111111')
+      cast_expects(:time, 'not a time')
     end
     assert_raises ArgumentError do
       cast_expects(:datetime, '-1')
