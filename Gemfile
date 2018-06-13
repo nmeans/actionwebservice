@@ -8,5 +8,6 @@ git 'https://github.com/makandra/rails.git', :branch => '2-3-lts' do
   gem 'railslts-version'
   gem 'railties'
 end
+gem "test-unit", "1.2.3"
 
 gemspec

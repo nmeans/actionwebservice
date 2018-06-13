@@ -1,3 +1,4 @@
+require 'action_controller'
 module ActionWebService # :nodoc:
   module Protocol # :nodoc:
     class ProtocolError < ActionWebServiceError # :nodoc:

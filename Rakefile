@@ -4,7 +4,6 @@ require 'rake/testtask'
 require 'rdoc/task'
 require 'rake/packagetask'
 require 'rubygems/package_task'
-require 'rake/contrib/rubyforgepublisher'
 require 'fileutils'
 require File.join(File.dirname(__FILE__), 'lib', 'action_web_service', 'version')
 

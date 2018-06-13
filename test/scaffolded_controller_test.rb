@@ -1,5 +1,20 @@
 require File.dirname(__FILE__) + '/abstract_unit'
 
+
+module I18n
+  module Backend
+    module Base
+      def load_file(filename)
+        type = File.extname(filename).tr('.', '').downcase
+        # As a fix added second argument as true to respond_to? method
+        raise UnknownFileType.new(type, filename) unless respond_to?(:"load_#{type}", true)
+        data = send(:"load_#{type}", filename) # TODO raise a meaningful exception if this does not yield a Hash
+        data.each { |locale, d| store_translations(locale, d) }
+      end
+    end
+  end
+end
+
 ActionController::Routing::Routes.draw do |map|
   map.connect '', :controller => 'scaffolded'
   map.connect ':controller/:action/:id'
@@ -111,13 +126,13 @@ class ScaffoldedControllerTest < ActionController::TestCase
     end
     
     post :scaffold_invoke_submit, :service => 'scaffolded', :method => 'DateDiff', 
-         :method_params => {'0' => {'1' => '2006', '2' => '2', '3' => '1'}, '1' => {'1' => '2006', '2' => '2', '3' => '2'}}
+         :method_params => {'0' => {'1' => '2006', '2' => '1', '3' => '2'}, '1' => {'1' => '2006', '2' => '2', '3' => '2'}}
     assert_equal 1, @controller.instance_eval{ @method_return_value }
   end
   
   def test_scaffold_struct_date_params
     post :scaffold_invoke_submit, :service => 'scaffolded', :method => 'DateOfBirth', 
-         :method_params => {'0' => {'birth' => {'1' => '2006', '2' => '2', '3' => '1'}, 'id' => '1', 'name' => 'person'}}
+         :method_params => {'0' => {'birth' => {'1' => '2006', '2' => '1', '3' => '2'}, 'id' => '1', 'name' => 'person'}}
     assert_equal '2006-02-01', @controller.instance_eval{ @method_return_value }
   end
 
@@ -131,7 +146,7 @@ class ScaffoldedControllerTest < ActionController::TestCase
     end
 
     post :scaffold_invoke_submit, :service => 'scaffolded', :method => 'TimeDiff', 
-         :method_params => {'0' => {'1' => '2006', '2' => '2', '3' => '1', '4' => '1', '5' => '1', '6' => '1'}, 
+         :method_params => {'0' => {'1' => '2006', '2' => '1', '3' => '2', '4' => '1', '5' => '1', '6' => '1'}, 
                             '1' => {'1' => '2006', '2' => '2', '3' => '2', '4' => '1', '5' => '1', '6' => '1'}}
     assert_equal 86400, @controller.instance_eval{ @method_return_value }
   end

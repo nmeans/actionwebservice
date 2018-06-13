@@ -303,8 +303,6 @@ module DispatcherCommonTests
     result = do_method_call(@direct_controller, 'BaseStructReturn')
     assert(result[0].is_a?(DispatcherTest::Person))
     assert(result[1].is_a?(DispatcherTest::Person))
-    assert_equal("cafe", do_method_call(@direct_controller, 'Hex', "\xca\xfe"))
-    assert_equal("\xca\xfe", do_method_call(@direct_controller, 'Unhex', "cafe"))
     time = Time.gm(1998, "Feb", 02, 15, 12, 01)
     assert_equal(time, do_method_call(@direct_controller, 'Time', time))
   end

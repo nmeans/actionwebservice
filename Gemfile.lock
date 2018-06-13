@@ -18,19 +18,40 @@ GIT
 PATH
   remote: .
   specs:
-    actionwebservice (2.3.14)
+    actionwebservice (2.3.18.18)
       actionpack (~> 2.3.0)
       activerecord (~> 2.3.0)
+      iconv
+      soap4r-ng
 
 GEM
   remote: https://rubygems.org/
   specs:
+    byebug (10.0.2)
+    coderay (1.1.2)
+    hoe (3.17.0)
+      rake (>= 0.8, < 13.0)
+    httpclient (2.8.3)
+    iconv (1.0.5)
     json (1.8.6)
-    mysql (2.9.1)
+    logger-application (0.0.2)
+    method_source (0.9.0)
+    mysql2 (0.2.24)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.6.0)
+      byebug (~> 10.0)
+      pry (~> 0.10)
     rack (1.4.7)
     rake (10.5.0)
     rdoc (4.2.0)
       json (~> 1.4)
+    soap4r-ng (2.0.3)
+      httpclient (~> 2.6)
+      logger-application (~> 0.0.2)
+    test-unit (1.2.3)
+      hoe (>= 1.5.1)
 
 PLATFORMS
   ruby
@@ -40,11 +61,13 @@ DEPENDENCIES
   actionwebservice!
   activerecord!
   activesupport!
-  mysql (= 2.9.1)
+  mysql2 (= 0.2.24)
+  pry-byebug
   railslts-version!
   railties!
   rake (= 10.5.0)
   rdoc (= 4.2.0)
+  test-unit (= 1.2.3)
 
 BUNDLED WITH
-   1.15.1
+   1.16.2

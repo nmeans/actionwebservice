@@ -12,10 +12,12 @@ Gem::Specification.new do |s|
 
   s.add_dependency('actionpack', '~> 2.3.0')
   s.add_dependency('activerecord', '~> 2.3.0')
+  s.add_dependency('soap4r-ng')
+  s.add_dependency('iconv')
 
   s.add_development_dependency('rake', '=10.5.0')
   s.add_development_dependency('rdoc', '=4.2.0')
-  s.add_development_dependency('mysql', '=2.9.1')
+  s.add_development_dependency('mysql2', '=0.2.24')
 
   s.has_rdoc = true
   s.requirements << 'none'
